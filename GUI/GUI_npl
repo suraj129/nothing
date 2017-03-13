@@ -1,0 +1,175 @@
+from Tkinter import *
+from Tkinter import Tk
+import tkMessageBox
+
+master = Tkinter.Tk()
+master.title("Packet Deatils")
+master.geometry("350x150")
+
+def tcp_packet():
+    tcp = Tkinter.Tk()
+    tcp.title("Tcp Packet Deatils")
+    tcp.geometry("350x150")
+    
+    info = Label(tcp, text='Packet Number')
+    info.grid(row=0, column=0)
+    
+    info = Label(tcp, text='Source Ip')
+    info.grid(row=1, column=0)
+    
+    info = Label(tcp, text='Destination Ip')
+    info.grid(row=2, column=0)
+    
+    info = Label(tcp, text='Mac Address ')
+    info.grid(row=3, column=0)
+    
+    info = Label(tcp, text='Source Port ')
+    info.grid(row=4, column=0)
+    
+    info = Label(tcp, text='Destination Port ')
+    info.grid(row=5, column=0)
+ 
+    verify = Button(tcp, text='Expolit & Verify ',bg='Green',  command=tcp_expolit)
+    verify.grid(row=6, column=0)
+    
+    close = Button(tcp, text='Quit',bg='RED',  command=tcp.destroy)
+    close.grid(row=6, column=3)
+
+def tcp_expolit():
+    pass
+
+def udp_packet():
+    tcp = Tkinter.Tk()
+    tcp.title("UDP Packet Deatils")
+    tcp.geometry("350x150")
+    
+    info = Label(tcp, text='Packet Number')
+    info.grid(row=0, column=0)
+    
+    info = Label(tcp, text='Source Ip')
+    info.grid(row=1, column=0)
+    
+    info = Label(tcp, text='Destination Ip')
+    info.grid(row=2, column=0)
+    
+    info = Label(tcp, text='Mac Address ')
+    info.grid(row=3, column=0)
+    
+    info = Label(tcp, text='Source Port ')
+    info.grid(row=4, column=0)
+    
+    info = Label(tcp, text='Destination Port ')
+    info.grid(row=5, column=0)
+ 
+    verify = Button(tcp, text='Expolit & Verify ',bg='Green',  command=tcp_expolit)
+    verify.grid(row=6, column=0)
+    
+    close = Button(tcp, text='Quit',bg='RED',  command=tcp.destroy)
+    close.grid(row=6, column=3)
+
+def icmp_packet():
+    tcp = Tkinter.Tk()
+    tcp.title("ICMP Packet Deatils")
+    tcp.geometry("350x150")
+    
+    info = Label(tcp, text='Packet Number')
+    info.grid(row=0, column=0)
+    
+    info = Label(tcp, text='Source Ip')
+    info.grid(row=1, column=0)
+    
+    info = Label(tcp, text='Destination Ip')
+    info.grid(row=2, column=0)
+    
+    info = Label(tcp, text='Mac Address ')
+    info.grid(row=3, column=0)
+    
+    info = Label(tcp, text='Source Port ')
+    info.grid(row=4, column=0)
+    
+    info = Label(tcp, text='Destination Port ')
+    info.grid(row=5, column=0)
+ 
+    verify = Button(tcp, text='Expolit & Verify ',bg='Green',  command=tcp_expolit)
+    verify.grid(row=6, column=0)
+    
+    close = Button(tcp, text='Quit',bg='RED',  command=tcp.destroy)
+    close.grid(row=6, column=3)
+
+def other_packet():
+    tcp = Tkinter.Tk()
+    tcp.title("Other Packet Deatils")
+    tcp.geometry("350x150")
+    
+    info = Label(tcp, text='Packet Number')
+    info.grid(row=0, column=0)
+    
+    info = Label(tcp, text='Source Ip')
+    info.grid(row=1, column=0)
+    
+    info = Label(tcp, text='Destination Ip')
+    info.grid(row=2, column=0)
+    
+    info = Label(tcp, text='Mac Address ')
+    info.grid(row=3, column=0)
+    
+    info = Label(tcp, text='Source Port ')
+    info.grid(row=4, column=0)
+    
+    info = Label(tcp, text='Destination Port ')
+    info.grid(row=5, column=0)
+ 
+    verify = Button(tcp, text='Expolit & Verify ',bg='Green',  command=tcp_expolit)
+    verify.grid(row=6, column=0)
+    
+    close = Button(tcp, text='Quit',bg='RED',  command=tcp.destroy)
+    close.grid(row=6, column=3)
+
+MyButton1 = Button(master, text="TCP PACKETS", width=25,height=2,bg='yellow', command=tcp_packet)
+MyButton1.grid(row=0, column=0)
+
+info = Label(master, text='')
+info.grid(row=0, column=2)
+
+MyButton2 = Button(master, text="UDP PACKETS", width=25,height=2, bg='yellow', command=udp_packet)
+MyButton2.grid(row=0, column=3)
+
+info = Label(master, text='')
+info.grid(row=1, column=0)
+
+MyButton3 = Button(master, text="ICMP PACKETS", width=25,height=2,bg='yellow',  command=icmp_packet)
+MyButton3.grid(row=2, column=0)
+
+info = Label(master, text='')
+info.grid(row=2, column=1)
+
+MyButton3 = Button(master, text="OTHER PACKETS", width=25,height=2,bg='yellow',  command=other_packet)
+MyButton3.grid(row=2, column=3)
+
+
+close = Button(master, text='Quit',bg='RED',  command=master.destroy)
+close.grid(row=4, column=3)
+
+top.mainloop()
+
+def main_exploit(ip_address):                                                                     #Nmap used directly from python-nmap to generate a dictionary for port 25
+    import subprocess,os,nmap
+    ip_str = str(ip_address)
+    nm = nmap.PortScanner()
+    real_check = nm.scan(ip_address,'22-443')
+    if real_check['scan'][ip_str]['tcp'] == 25:                                                 # Check for port 25 existence on the IP given
+        if real_check['scan'][ip_str]['tcp'][25]['name'] == 'smtp':                             #Check for the Port 25 to be smtp and proceed if true
+            print('True')
+        else:
+            print('False')
+        if real_check['scan'][ip_str]['tcp'][25]['state'] == 'open':                            #Check for the Port 25 to be open and proceed if true
+            print('True')
+        else:
+            print('False')
+    else:
+        print("Not possible")
+        
+    pass
+   
+   import socket
+socket.gethostbyaddr("72.14.192.0")
